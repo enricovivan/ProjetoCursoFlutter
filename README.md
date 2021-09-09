@@ -1,6 +1,7 @@
 # projeto_bom_joia
 
-A new Flutter project.
+Este projeto é de um cardápio em um restaurante, onde os clientes poder fazer os pedidos e ver quanto tempo falta para o pedido ficar pronto.
+Quando o Pedido fica pronto, o app informa o usuário que o pedido está pronto.
 
 ## Getting Started
 
