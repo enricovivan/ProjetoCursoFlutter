@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_bom_joia/app/my_app.dart';
+import 'package:projeto_bom_joia/app/view/cronometro_general.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,9 +18,14 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: () {
+                Navigator.of(context).pushNamed(MyApp.CRONOMETRO_GENERAL);
+              },
+              icon: Icon(Icons.alarm)),
+          IconButton(
+              onPressed: () {
                 Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);
               },
-              icon: Icon(Icons.add))
+              icon: Icon(Icons.add)),
         ],
       ),
       body: ListView(),
