@@ -4,7 +4,7 @@ import 'package:projeto_bom_joia/app/view/homepage.dart';
 import 'package:projeto_bom_joia/app/view/pedidos_form.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  //const MyApp({Key? key}) : super(key: key);
   static const HOME = '/';
   static const PEDIDOS_FORM = 'pedidos_form';
   static const CRONOMETRO_GENERAL = 'cronometro_general';

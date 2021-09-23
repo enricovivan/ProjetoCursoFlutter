@@ -7,7 +7,7 @@ void main() async {
   await loadInterface();
   await loadButtons();
   print('Executando...');
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 // funções assíncronas
@@ -20,5 +20,6 @@ Future loadInterface() {
 }
 
 Future loadButtons() {
-  return Future.delayed(Duration(seconds: 2), () => print('Carregando botões'));
+  return Future.delayed(
+      Duration(seconds: 2), () => print('Carregando botões...'));
 }

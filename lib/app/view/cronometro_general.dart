@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CronometroGeneral extends StatefulWidget {
-  const CronometroGeneral({Key? key}) : super(key: key);
+  //const CronometroGeneral({Key? key}) : super(key: key);
 
   @override
   _CronometroGeneralState createState() => _CronometroGeneralState();
