@@ -54,10 +54,9 @@ class _HomePageState extends State<HomePage> {
                 actions: [
                   IconButton(
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(MyApp.CRONOMETRO_GENERAL);
+                        Navigator.of(context).pushNamed(MyApp.FAVORITOS);
                       },
-                      icon: Icon(Icons.alarm)),
+                      icon: Icon(Icons.favorite)),
                   IconButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);

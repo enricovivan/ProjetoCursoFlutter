@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_bom_joia/app/view/cronometro_general.dart';
+import 'package:projeto_bom_joia/app/view/favoritos.dart';
 import 'package:projeto_bom_joia/app/view/homepage.dart';
 import 'package:projeto_bom_joia/app/view/pedidos_form.dart';
 
@@ -8,6 +9,7 @@ class MyApp extends StatelessWidget {
   static const HOME = '/';
   static const PEDIDOS_FORM = 'pedidos_form';
   static const CRONOMETRO_GENERAL = 'cronometro_general';
+  static const FAVORITOS = 'favoritos';
 
   // This widget is the root of your application.
   @override
@@ -24,12 +26,13 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       routes: {
         HOME: (context) => HomePage(),
         PEDIDOS_FORM: (context) => PedidosForm(),
         CRONOMETRO_GENERAL: (context) => CronometroGeneral(),
+        FAVORITOS: (context) => Favoritos(),
       },
     );
   }
