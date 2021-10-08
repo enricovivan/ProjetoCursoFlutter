@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:projeto_bom_joia/app/database/sqlite/dao/pratos_dao_impl.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:projeto_bom_joia/app/domain/entities/pratos.dart';
 import 'package:projeto_bom_joia/app/my_app.dart';
+import 'package:projeto_bom_joia/app/view/homepage_back.dart';
 
 import 'package:sqflite/sqflite.dart';
 
@@ -34,58 +35,98 @@ class HomePage extends StatefulWidget {
   },
 ];*/
 
-Future<List<Pratos>> _buscar() async {
-  return PratosDAOImpl().find();
-}
-
 class _HomePageState extends State<HomePage> {
+  final _back = HomepageBack();
+
+  CircleAvatar circleAvatar(String url) {
+    try {
+      return CircleAvatar(
+        backgroundImage: NetworkImage(url),
+      );
+    } catch (e) {
+      return CircleAvatar(
+        child: Icon(Icons.person),
+      );
+    }
+  }
+
+  Widget iconRemoveButton(BuildContext context, Function remove) {
+    return IconButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text('Excluir'),
+                    content: Text('Confirma a Exclusão?'),
+                    actions: [
+                      FlatButton(
+                        child: Text('Não'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      FlatButton(
+                        child: Text('Sim'),
+                        onPressed: remove,
+                      ),
+                    ],
+                  ));
+        },
+        icon: Icon(Icons.cancel),
+        color: Colors.red);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _buscar(),
-      builder: (context, futuro) {
-        if (futuro.hasData) {
-          List<Pratos> lista = futuro.data;
-          return Scaffold(
-              appBar: AppBar(
-                title: Text('Home'),
-                actions: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(MyApp.FAVORITOS);
-                      },
-                      icon: Icon(Icons.favorite)),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);
-                      },
-                      icon: Icon(Icons.add)),
-                ],
-              ),
-              body: ListView.builder(
-                  itemCount: lista.length,
-                  itemBuilder: (context, i) {
-                    var prato = lista[i];
-                    var foto = CircleAvatar(
-                        backgroundImage: NetworkImage(prato.urlAvatar));
-                    return ListTile(
-                      leading: foto,
-                      title: Text(prato.nomePrato),
-                      subtitle: Text(prato.quantia),
-                      trailing: Container(
-                        width: 100,
-                        child: Row(children: [
-                          IconButton(onPressed: null, icon: Icon(Icons.cancel)),
-                          IconButton(onPressed: null, icon: Icon(Icons.timer)),
-                        ]),
-                      ),
-                    );
-                  }));
-        } else {
-          return Scaffold();
-        }
-      },
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Home'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(MyApp.FAVORITOS);
+                },
+                icon: Icon(Icons.favorite)),
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);
+                },
+                icon: Icon(Icons.add)),
+          ],
+        ),
+        body: Observer(builder: (context) {
+          return FutureBuilder(
+            future: _back.list,
+            builder: (context, futuro) {
+              if (!futuro.hasData) {
+                return CircularProgressIndicator();
+              } else {
+                List<Pratos> lista = futuro.data;
+                return ListView.builder(
+                    itemCount: lista.length,
+                    itemBuilder: (context, i) {
+                      var prato = lista[i];
+                      return ListTile(
+                        leading: circleAvatar(prato.urlAvatar),
+                        title: Text(prato.nomePrato),
+                        subtitle: Text(prato.quantia),
+                        trailing: Container(
+                          width: 100,
+                          child: Row(children: [
+                            IconButton(
+                                onPressed: null, icon: Icon(Icons.timer)),
+                            iconRemoveButton(context, () {
+                              _back.remover(prato.id);
+                              Navigator.of(context).pop();
+                            })
+                          ]),
+                        ),
+                      );
+                    });
+              }
+            },
+          );
+        }));
 
     /**/
   }

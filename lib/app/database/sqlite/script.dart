@@ -1,6 +1,6 @@
 final createTable = '''
   CREATE TABLE pratos(
-    id INT PRIMARY KEY,
+    id INTEGER NOT NULL PRIMARY KEY,
     nomePrato VARCHAR(200),
     quantia VARCHAR(30),
     url_avatar VARCHAR(500)
