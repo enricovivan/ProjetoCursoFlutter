@@ -39,14 +39,10 @@ class _HomePageState extends State<HomePage> {
   final _back = HomepageBack();
 
   CircleAvatar circleAvatar(String url) {
-    try {
-      return CircleAvatar(
-        backgroundImage: NetworkImage(url),
-      );
-    } catch (e) {
-      return CircleAvatar(
-        child: Icon(Icons.person),
-      );
+    if (Uri.tryParse(url).isAbsolute) {
+      return CircleAvatar(backgroundImage: NetworkImage(url));
+    } else {
+      return CircleAvatar(child: Icon(Icons.person));
     }
   }
 
@@ -89,7 +85,8 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.favorite)),
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);
+                  //Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);
+                  _back.goToForm(context);
                 },
                 icon: Icon(Icons.add)),
           ],
