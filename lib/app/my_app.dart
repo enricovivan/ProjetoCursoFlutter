@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_bom_joia/app/view/cronometro_general.dart';
 import 'package:projeto_bom_joia/app/view/favoritos.dart';
 import 'package:projeto_bom_joia/app/view/homepage.dart';
+import 'package:projeto_bom_joia/app/view/pedidos_details.dart';
 import 'package:projeto_bom_joia/app/view/pedidos_form.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,11 +11,13 @@ class MyApp extends StatelessWidget {
   static const PEDIDOS_FORM = 'pedidos_form';
   static const CRONOMETRO_GENERAL = 'cronometro_general';
   static const FAVORITOS = 'favoritos';
+  static const PEDIDOS_DETAILS = 'pedidos_details';
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Pedidos & Tempo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
         PEDIDOS_FORM: (context) => PedidosForm(),
         CRONOMETRO_GENERAL: (context) => CronometroGeneral(),
         FAVORITOS: (context) => Favoritos(),
+        PEDIDOS_DETAILS: (context) => PedidosDetails(),
       },
     );
   }

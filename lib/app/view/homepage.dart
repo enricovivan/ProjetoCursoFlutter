@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 import 'package:projeto_bom_joia/app/domain/entities/pratos.dart';
 import 'package:projeto_bom_joia/app/my_app.dart';
 import 'package:projeto_bom_joia/app/view/homepage_back.dart';
-
-import 'package:sqflite/sqflite.dart';
 
 class HomePage extends StatefulWidget {
   //const HomePage({Key? key}) : super(key: key);
@@ -106,6 +103,9 @@ class _HomePageState extends State<HomePage> {
                       return ListTile(
                         leading: circleAvatar(prato.urlAvatar),
                         title: Text(prato.nomePrato),
+                        onTap: () {
+                          _back.goToDetails(context, prato);
+                        },
                         subtitle: Text(prato.quantia),
                         trailing: Container(
                           width: 100,

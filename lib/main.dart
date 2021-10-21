@@ -4,9 +4,9 @@ import 'package:projeto_bom_joia/app/injection.dart';
 import 'app/my_app.dart';
 
 void main() async {
-  await loadInit();
-  await loadInterface();
-  await loadButtons();
+  //await loadInit();
+  //await loadInterface();
+  //await loadButtons();
   configuraInjecao();
   print('Executando...');
   runApp(MyApp());

@@ -38,4 +38,9 @@ abstract class _HomepageBack with Store {
     _service.remove(id);
     refreshList();
   }
+
+  //método para abrir o prato
+  goToDetails(BuildContext context, Pratos prato) {
+    Navigator.of(context).pushNamed(MyApp.PEDIDOS_DETAILS, arguments: prato);
+  }
 }
