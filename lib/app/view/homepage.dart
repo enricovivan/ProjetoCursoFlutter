@@ -1,38 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:projeto_bom_joia/app/domain/entities/pratos.dart';
-import 'package:projeto_bom_joia/app/my_app.dart';
 import 'package:projeto_bom_joia/app/view/homepage_back.dart';
 
-class HomePage extends StatefulWidget {
-  //const HomePage({Key? key}) : super(key: key);
+import '../my_app.dart';
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-/*final listaPedidos = [
-  {
-    'nomePrato': 'Steak Tartare',
-    'quantia': '2 Pratos',
-    'fotoPrato':
-        'https://www.lowcarbnikki.com/wp-content/uploads/2019/08/20190611_203100.jpg'
-  },
-  {
-    'nomePrato': 'Pidan',
-    'quantia': '4 Porções',
-    'fotoPrato':
-        'https://www.onlinepasar.com.my/wp-content/uploads/2020/02/Century-Egg-Pidan.jpg'
-  },
-  {
-    'nomePrato': 'Pato no Tucupi',
-    'quantia': '2 Pratos',
-    'fotoPrato':
-        'https://t2.rg.ltmcdn.com/pt/images/4/1/9/img_pato_no_tucupi_paraense_2914_orig.jpg'
-  },
-];*/
-
-class _HomePageState extends State<HomePage> {
+class Homepage extends StatelessWidget {
   final _back = HomepageBack();
 
   CircleAvatar circleAvatar(String url) {
@@ -41,6 +14,11 @@ class _HomePageState extends State<HomePage> {
     } else {
       return CircleAvatar(child: Icon(Icons.person));
     }
+  }
+
+  Widget botaoEditar(Function funcao) {
+    return IconButton(
+        onPressed: funcao, icon: Icon(Icons.edit), color: Colors.amberAccent);
   }
 
   Widget iconRemoveButton(BuildContext context, Function remove) {
@@ -73,13 +51,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Home'),
+          title: Text('Lista de Pedidos (Home)'),
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(MyApp.FAVORITOS);
+                  _back.refreshList();
                 },
-                icon: Icon(Icons.favorite)),
+                icon: Icon(Icons.refresh)),
             IconButton(
                 onPressed: () {
                   //Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM);
@@ -100,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: lista.length,
                     itemBuilder: (context, i) {
                       var prato = lista[i];
+
                       return ListTile(
                         leading: circleAvatar(prato.urlAvatar),
                         title: Text(prato.nomePrato),
@@ -110,8 +89,9 @@ class _HomePageState extends State<HomePage> {
                         trailing: Container(
                           width: 100,
                           child: Row(children: [
-                            IconButton(
-                                onPressed: null, icon: Icon(Icons.timer)),
+                            botaoEditar(() {
+                              _back.goToForm(context, prato);
+                            }),
                             iconRemoveButton(context, () {
                               _back.remover(prato.id);
                               Navigator.of(context).pop();

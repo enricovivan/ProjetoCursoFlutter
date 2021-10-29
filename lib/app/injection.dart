@@ -15,6 +15,6 @@ configuraInjecao() async {
   await Firebase.initializeApp();
   //registerSingleton cria um unico objeto pra atender todo mundo // compartilha as informações do objeto
   //registerFactory cria um objeto para cada requisição
-  getIt.registerSingleton<PratosDAO>(PratosDAOFirestore());
+  getIt.registerSingleton<PratosDAO>(PratosDAOImpl());
   getIt.registerSingleton<PratoService>(PratoService());
 }

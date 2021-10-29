@@ -7,6 +7,7 @@ class PedidosForm extends StatelessWidget {
 
   Widget nomeCampo(PedidosFormBack back) {
     return TextFormField(
+      initialValue: back.pratos.nomePrato,
       validator: back.validateName,
       onSaved: (newValue) => back.pratos.nomePrato = newValue,
       decoration: InputDecoration(
@@ -16,6 +17,7 @@ class PedidosForm extends StatelessWidget {
 
   Widget quantidade(PedidosFormBack back) {
     return TextFormField(
+      initialValue: back.pratos.quantia,
       validator: back.validateQuantia,
       onSaved: (newValue) => back.pratos.quantia = newValue,
       decoration: InputDecoration(
@@ -25,6 +27,7 @@ class PedidosForm extends StatelessWidget {
 
   Widget url(PedidosFormBack back) {
     return TextFormField(
+      initialValue: back.pratos.urlAvatar,
       onSaved: (newValue) => back.pratos.urlAvatar = newValue,
       decoration: InputDecoration(
           labelText: 'Link da Imagem',

@@ -15,6 +15,7 @@ abstract class _HomepageBack with Store {
   //homepage
   @observable
   Future<List<Pratos>> list;
+  List<Pratos> listaSalva;
 
   //método para atualizar lista de pratos (homepage)
   @action
@@ -27,8 +28,10 @@ abstract class _HomepageBack with Store {
   }
 
   //metodo apra chamar o formulario (adicionar)
-  goToForm(BuildContext context) {
-    Navigator.of(context).pushNamed(MyApp.PEDIDOS_FORM).then(refreshList());
+  goToForm(BuildContext context, [Pratos pratos]) {
+    Navigator.of(context)
+        .pushNamed(MyApp.PEDIDOS_FORM, arguments: pratos)
+        .then(refreshList());
   }
 
   //metodo para chamar o timer (quanto tempo falta)
