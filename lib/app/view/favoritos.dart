@@ -14,6 +14,7 @@ class _FavoritosState extends State<Favoritos> {
       appBar: AppBar(
         title: Text('Pratos Favoritos'),
       ),
+      body: ListView(),
     );
   }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "565817195197",
+    "project_id": "projeto-bom-joia",
+    "storage_bucket": "projeto-bom-joia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565817195197:android:0057dc52108f7052ddd5d4",
+        "android_client_info": {
+          "package_name": "br.com.cursoflutter.enrico.projeto_bom_joia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565817195197-e0sbhmlrbsic09fshmtf6jgteraj0aft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAYc6LG50HMwIraPssciY6w9X2UW6VKfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565817195197-e0sbhmlrbsic09fshmtf6jgteraj0aft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

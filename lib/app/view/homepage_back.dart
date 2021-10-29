@@ -34,7 +34,7 @@ abstract class _HomepageBack with Store {
   //metodo para chamar o timer (quanto tempo falta)
 
   //metodo para remover
-  remover(int id) {
+  remover(dynamic id) {
     _service.remove(id);
     refreshList();
   }

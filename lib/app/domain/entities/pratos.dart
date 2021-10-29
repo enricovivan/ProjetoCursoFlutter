@@ -1,5 +1,5 @@
 class Pratos {
-  int id;
+  dynamic id;
   String nomePrato;
   String quantia;
   String urlAvatar;

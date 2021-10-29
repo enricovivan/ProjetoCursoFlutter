@@ -8,7 +8,7 @@ import 'package:projeto_bom_joia/app/domain/interfaces/pratos_dao.dart';
 class PratoService {
   //var dao = PratosDAOImpl(); //dao sqlite (tecnologia específica)
   //dao de qualquer um desde que tenhamos definidas as operações no pratos dao
-  var _dao = GetIt.I.get<PratosDAO>();
+  var _dao = GetIt.instance.get<PratosDAO>();
 
   //Regras de negócio: Salvar um prato, alterar ele, excluir e listar
   save(Pratos pratos) {
@@ -17,7 +17,7 @@ class PratoService {
     _dao.save(pratos);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     _dao.remove(id);
   }
 
